@@ -1,0 +1,7 @@
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\Fake\obj\Debug\Fake.csprojResolveAssemblyReference.cache
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\Fake\bin\Debug\Fake.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\Fake\bin\Debug\Fake.pdb
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\Fake\bin\Debug\EPAM.Data.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\Fake\bin\Debug\EPAM.Data.pdb
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\Fake\obj\Debug\Fake.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\Fake\obj\Debug\Fake.pdb

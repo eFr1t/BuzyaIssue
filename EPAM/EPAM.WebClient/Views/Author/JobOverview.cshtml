@@ -1,0 +1,65 @@
+﻿@model EPAM.Model.Job
+
+@{
+    ViewBag.Title = "JobOverview";
+    ViewBag.Menu = 0;
+
+    string Skills = string.Join(", ", Model.Skills.Select(s => s.Title));
+    int num = 1;
+    string Questions = num++ + ") " + string.Join("\n" + num++ + ") ", Model.Questions.Select(q => q.Text));
+}
+
+@section Links{
+    @Styles.Render("~/Content/Author/JobOverview.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<h1>Job Overview</h1>
+<div id="applyDiv">
+    @if (Model.Author != null)
+    {
+        <div>
+            <h2>Job is closed</h2>
+        </div>
+    }
+    else
+    {
+        if (ViewBag.AlreadyApplied)
+        {
+            <div>
+                <h2>Already applied</h2>
+            </div>
+        }
+        else
+        {
+            <div>
+                @Html.ActionLink("Apply", "JobApply", "Author", new { jobId = Model.Id }, new { @class = "button" })
+            </div>
+        }
+        <div id="applyInfo">
+            <h2>Applications: @Enumerable.Count(Model.Applications.Where(i => i.IsClosed == false))</h2>
+        </div>
+    }
+    
+</div>
+<div id="workSpace">
+    <h1 id="title">@Model.Title</h1>
+    <div id="info">
+        <h3>@Model.JobCategory.Name, @Model.JobSubcategory.Name
+            Skills: @Skills
+        </h3>
+        <h3>Deadline - @Model.Deadline, Budget - @Model.Budget$</h3>
+    </div>
+    <h1 id="descTitle">Description</h1>
+    <div id="desc"><h4>@Model.Description</h4></div>
+    <h1 id="questionsTitle">Questions:</h1>
+    <div id="questions"><h3>@Questions</h3></div>
+</div>
+

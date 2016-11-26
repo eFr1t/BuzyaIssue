@@ -1,0 +1,131 @@
+﻿#bar {
+    float: left;
+}
+
+#filter {
+    width: 370px;
+    background: #f7f7f7;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#savedFilters {
+    width: 370px;
+    background: #f7f7f7;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+    #savedFilters div {
+        text-align: left;
+        font-size: 20px;
+        color: #33b524;
+        cursor: pointer;
+        width: 330px;
+        margin: 10px;
+    }
+
+        #savedFilters div > h4:hover {
+            text-decoration: underline;
+        }
+
+    #savedFilters span {
+        float: right;
+        background-image: url(../Images/remove.png);
+        width: 20px;
+        height: 20px;
+        display: block !important;
+    }
+
+.fixed {
+    position: fixed;
+    top: 20px;
+}
+
+#filter input[type=text],
+select {
+    width: 346px;
+}
+
+#slider {
+    float: left;
+    width: 343px;
+    margin-bottom: 10px;
+}
+
+#min {
+    float: left;
+    width: 75px !important;
+}
+
+#max {
+    float: right;
+    width: 75px !important;
+}
+
+#save {
+    margin-top: 20px;
+}
+
+    #save input[type=text] {
+        width: 216px !important;
+    }
+
+#update {
+    margin-top: 20px;
+}
+
+#pages {
+    margin-bottom: 10px;
+    float: right;
+}
+
+#jobs {
+    float: right;
+    width: 760px;
+    padding: 10px;
+}
+
+div[id^=jobPost] {
+    float: left;
+    text-align: left;
+    background: #f7f7f7;
+    padding: 20px 20px 0px 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    div[id^=jobPost] a {
+        font-size: 20px;
+    }
+
+    div[id^=jobPost] > #info {
+        float: left;
+        width: 80%;
+    }
+
+    div[id^=jobPost] > #saveButton {
+        float: left;
+        width: 20%;
+        margin-top: 20px;
+        text-align: center;
+    }

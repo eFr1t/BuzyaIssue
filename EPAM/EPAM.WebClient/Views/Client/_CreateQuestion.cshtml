@@ -1,0 +1,11 @@
+﻿<div id="question{0}">
+    <select id="cbQuestion{0}" name="questions[{0}].Text">
+        <option value="">Question text</option>
+        @foreach (var item in ViewBag.Questions)
+        {
+            <option value="@item.Text">@item.Text</option>
+        }
+    </select>
+    <input id="tbQuestion{0}" type="text" name="" class="hidden" placeholder="Question text" />
+    <input type="checkbox" value="{0}" />Custom question
+</div>

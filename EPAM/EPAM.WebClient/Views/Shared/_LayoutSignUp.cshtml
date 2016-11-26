@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Chameleon</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/SignUp/Layout.css")
+    @Styles.Render(ViewBag.CSS)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+</head>
+<body>
+    <div id="page-wrapper">
+        <div id="header">
+            <div id="logo"><a title="Chameleon"><img src="/Content/Images/logo.png" width="100" height="100" alt="" /></a></div>
+            <div id="nav">
+                Already have an Chameleon account?<br>
+                @Html.ActionLink("Log In", "Index", "LogIn")
+            </div>
+        </div>
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="copyright">Copyright &copy; 2015 @Html.ActionLink("Chameleon", "Index", "LogIn"). All rights reserved.</div>
+</body>
+</html>

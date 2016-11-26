@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Chameleon</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Layout.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("Links", false)
+</head>
+<body>
+    <div id="page-wrapper">
+        <div id="header">
+            <div id="logo"><a title="Chameleon"><img src="/Content/Images/logo.png" width="100" height="100" alt="" /></a></div>
+            <div id="nav">
+                @RenderSection("FirstMenuBar", true)
+                <br />
+                @RenderSection("SecondMenuBar", false)
+            </div>
+            <div id="person">
+                Logged in as<br />
+                @Session["PersonName"]<br />
+                @Html.ActionLink("Log Out", "LogOut", "LogIn")
+            </div>
+        </div>
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="copyright">Copyright &copy; 2015 @Html.ActionLink("Chameleon", "Index", "LogIn"). All rights reserved.</div>
+</body>
+</html>

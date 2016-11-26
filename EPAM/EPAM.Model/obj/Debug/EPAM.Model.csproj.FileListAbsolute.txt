@@ -1,0 +1,7 @@
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.Model\bin\Debug\EPAM.Model.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.Model\bin\Debug\EPAM.Model.pdb
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.Model\bin\Debug\EPAM.DBAttribute.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.Model\bin\Debug\EPAM.DBAttribute.pdb
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.Model\obj\Debug\EPAM.Model.csprojResolveAssemblyReference.cache
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.Model\obj\Debug\EPAM.Model.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.Model\obj\Debug\EPAM.Model.pdb

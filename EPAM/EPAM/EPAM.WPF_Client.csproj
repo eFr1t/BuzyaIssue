@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26F762EC-7689-45E5-AB2B-29F6EA9A1671}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EPAM.WPF_Client</RootNamespace>
+    <AssemblyName>EPAM.WPF_Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\AppVM.cs" />
+    <Compile Include="ViewModel\BaseVM.cs" />
+    <Compile Include="ViewModel\ClientCreateJobUCVM.cs" />
+    <Compile Include="ViewModel\QuestionUCVM.cs" />
+    <Compile Include="View\ClientCreateJobUC.xaml.cs">
+      <DependentUpon>ClientCreateJobUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ClientFreelancersUCVM.cs" />
+    <Compile Include="ViewModel\ClientJobsUCVM.cs" />
+    <Compile Include="ViewModel\ClientProfileUCVM.cs" />
+    <Compile Include="ViewModel\ClientWindowVM.cs" />
+    <Compile Include="ViewModel\LogInWindowVM.cs" />
+    <Compile Include="ViewModel\PersonalInfoUCVM.cs" />
+    <Compile Include="ViewModel\RegistrationWindowVM.cs" />
+    <Compile Include="View\ApplicationsUC.xaml.cs">
+      <DependentUpon>ApplicationsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AuthorWindow.xaml.cs">
+      <DependentUpon>AuthorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientFreelancersUC.xaml.cs">
+      <DependentUpon>ClientFreelancersUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientJobsUC.xaml.cs">
+      <DependentUpon>ClientJobsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientProfileUC.xaml.cs">
+      <DependentUpon>ClientProfileUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientWindow.xaml.cs">
+      <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FindJobUC.xaml.cs">
+      <DependentUpon>FindJobUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JobPostUC.xaml.cs">
+      <DependentUpon>JobPostUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JobsUC.xaml.cs">
+      <DependentUpon>JobsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JobWindow.xaml.cs">
+      <DependentUpon>JobWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LogInWindow.xaml.cs">
+      <DependentUpon>LogInWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyJobsUC.xaml.cs">
+      <DependentUpon>MyJobsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PersonalInfoUC.xaml.cs">
+      <DependentUpon>PersonalInfoUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileUC.xaml.cs">
+      <DependentUpon>ProfileUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QuestionUC.xaml.cs">
+      <DependentUpon>QuestionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegistrationWindow.xaml.cs">
+      <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SavedJobsUC.xaml.cs">
+      <DependentUpon>SavedJobsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TalksUC.xaml.cs">
+      <DependentUpon>TalksUC.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\ClientCreateJobUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ApplicationsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AuthorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ClientFreelancersUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientJobsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientProfileUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\FindJobUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\JobPostUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\JobsUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\JobWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LogInWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MyJobsUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PersonalInfoUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfileUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QuestionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RegistrationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SavedJobsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TalksUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EPAM.IClient-Server\EPAM.IClient-Server.csproj">
+      <Project>{9019f5b9-2a6a-4397-bdfd-25dcf6c00845}</Project>
+      <Name>EPAM.IClient-Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EPAM.Model\EPAM.Model.csproj">
+      <Project>{d3530d2d-f967-4a5c-8a87-f6ec748fa0c2}</Project>
+      <Name>EPAM.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Chameleon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

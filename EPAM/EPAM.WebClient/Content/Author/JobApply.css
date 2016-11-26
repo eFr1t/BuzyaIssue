@@ -1,0 +1,22 @@
+﻿#workSpace {
+    float: left;
+    width: 500px;
+    margin-left: 330px;
+}
+
+#title {
+    margin-left: 20px;
+}
+
+#info,
+#questions {
+    text-align: left;
+}
+
+#questions > textarea {
+    width: 100%;
+}
+
+#apply {
+    margin-top: 20px;
+}

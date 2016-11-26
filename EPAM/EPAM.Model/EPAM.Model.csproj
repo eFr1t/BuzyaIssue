@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3530D2D-F967-4A5C-8A87-F6EC748FA0C2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EPAM.Model</RootNamespace>
+    <AssemblyName>EPAM.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Answer.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Author.cs" />
+    <Compile Include="AuthorFilter.cs" />
+    <Compile Include="AuthorSavedJob.cs" />
+    <Compile Include="AuthorSkill.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="ClientSavedAuthor.cs" />
+    <Compile Include="IRepository\IAnswerRepository.cs" />
+    <Compile Include="IRepository\IApplicationRepository.cs" />
+    <Compile Include="IRepository\IAuthorRepository.cs" />
+    <Compile Include="IRepository\IAuthorSavedJobRepository.cs" />
+    <Compile Include="IRepository\IAuthorSkillRepository.cs" />
+    <Compile Include="IRepository\IBaseRepository.cs" />
+    <Compile Include="IRepository\IClientRepository.cs" />
+    <Compile Include="IRepository\IClientSavedAuthorRepository.cs" />
+    <Compile Include="IRepository\IJobRepository.cs" />
+    <Compile Include="IRepository\IJobCategoryRepository.cs" />
+    <Compile Include="IRepository\IJobFilterRepository.cs" />
+    <Compile Include="IRepository\IJobSkillRepository.cs" />
+    <Compile Include="IRepository\IJobSubcategoryRepository.cs" />
+    <Compile Include="IRepository\IMessageRepository.cs" />
+    <Compile Include="IRepository\IQuestionRepository.cs" />
+    <Compile Include="IRegister\IRegisterAuthor.cs" />
+    <Compile Include="IRegister\IRegisterClient.cs" />
+    <Compile Include="IRepository\ISkillRepository.cs" />
+    <Compile Include="IRepository\IStageRepository.cs" />
+    <Compile Include="IRepository\ITalkRepository.cs" />
+    <Compile Include="IRepository\ITimeZoneRepository.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Job.cs" />
+    <Compile Include="JobCategory.cs" />
+    <Compile Include="JobFilter.cs" />
+    <Compile Include="JobSkill.cs" />
+    <Compile Include="JobSubcategory.cs" />
+    <Compile Include="Repositories\AnswerRepository.cs" />
+    <Compile Include="Repositories\ApplicationRepository.cs" />
+    <Compile Include="Repositories\AuthorRepository.cs" />
+    <Compile Include="Repositories\AuthorSavedJobRepository.cs" />
+    <Compile Include="Repositories\AuthorSkillRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\ClientSavedAuthorRepository.cs" />
+    <Compile Include="Repositories\JobCategoryRepository.cs" />
+    <Compile Include="Repositories\JobFilterRepository.cs" />
+    <Compile Include="Repositories\JobRepository.cs" />
+    <Compile Include="Repositories\JobSkillRepository.cs" />
+    <Compile Include="Repositories\JobSubcategoryRepository.cs" />
+    <Compile Include="Repositories\MessageRepository.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs" />
+    <Compile Include="Repositories\SkillRepository.cs" />
+    <Compile Include="Repositories\StageRepository.cs" />
+    <Compile Include="Repositories\TalkRepository.cs" />
+    <Compile Include="Repositories\TimeZoneRepository.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs" />
+    <Compile Include="Skill.cs" />
+    <Compile Include="Stage.cs" />
+    <Compile Include="Talk.cs" />
+    <Compile Include="TimeZone.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EPAM.DBAttribute\EPAM.DBAttribute.csproj">
+      <Project>{93704d36-967a-4846-afc8-a365fc1ebcf8}</Project>
+      <Name>EPAM.DBAttribute</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

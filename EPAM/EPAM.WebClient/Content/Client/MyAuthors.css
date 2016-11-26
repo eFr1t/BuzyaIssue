@@ -1,0 +1,29 @@
+﻿#accordion {
+    width: 762px;
+    margin-left: 199px;
+}
+
+#authorPost {
+    float: left;
+    text-align: left;
+    background: #f7f7f7;
+    padding: 20px 20px 0px 20px;
+    margin-bottom: 10px;
+    width: 700px;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    #authorPost a {
+        font-size: 20px;
+    }
+
+    #authorPost > #info {
+        float: left;
+        width: 80%;
+    }

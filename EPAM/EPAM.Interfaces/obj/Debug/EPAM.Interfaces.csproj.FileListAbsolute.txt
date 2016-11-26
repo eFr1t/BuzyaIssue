@@ -1,0 +1,7 @@
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Interfaces\bin\Debug\EPAM.Interfaces.dll
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Interfaces\bin\Debug\EPAM.Interfaces.pdb
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Interfaces\bin\Debug\EPAM.Data.dll
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Interfaces\bin\Debug\EPAM.Data.pdb
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Interfaces\obj\Debug\EPAM.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Interfaces\obj\Debug\EPAM.Interfaces.dll
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Interfaces\obj\Debug\EPAM.Interfaces.pdb

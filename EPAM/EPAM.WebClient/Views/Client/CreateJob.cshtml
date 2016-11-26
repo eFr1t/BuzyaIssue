@@ -1,0 +1,254 @@
+﻿@{
+    ViewBag.Title = "Create Job";
+    ViewBag.Menu = 0;
+    ViewBag.Menu2 = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/CreateJob.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<h1>Create Job</h1>
+
+<div id="workSpace">
+    <form id="form" method="post" action="~/Client/CreateJob">
+        <div>
+            <input type="text" name="Title" placeholder="Title">
+            <select id="categories" name="JobCategoryId">
+                <option value="@Guid.Empty">Job category</option>
+                @foreach (var item in ViewBag.JobCategories)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+            <input id="submitCategory" type="submit" class="hidden" />
+            <div id="jobSubcategory">@Html.Partial("_JobSubcategory")</div>
+            <textarea name="ShortDescription" rows="3" placeholder="Short description"></textarea>
+            <textarea name="Description" rows="10" placeholder="Description"></textarea>
+            <input id="datetimepicker" type="text" name="Deadline" placeholder="Deadline" />
+        </div>
+        <div id="budget">Budget: $<input type="text" name="Budget" value="0.00" /></div>
+        <div id="questions">
+            <h2>Questions:</h2>
+        </div>
+        <div>
+            <input id="btnAddQuestion" type="button" class="button" value="&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;" />
+            <input id="btnRemoveQuestion" type="button" class="button" value="&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;" />
+        </div>
+        <h2>Skills:</h2>
+        <div id="skills">
+            @foreach (var item in ViewBag.Skills)
+            {
+                <div><input type="checkbox" value="@item.Id" />@item.Title</div>
+            }
+        </div>
+        <div id="button"><input type="submit" class="button" value="Create Job" /></div>
+    </form>
+</div>
+
+
+<script>
+    //Select subcategories
+    $('select#categories').change(function () {
+        var id = $(this).val();
+
+        $.ajax({
+            url: '@Url.Action("GetJobSubcategories")',
+            data: { JobCategoryId: id },
+            type: 'POST',
+            success: function (data) {
+                $('#jobSubcategory').html(data);
+            }
+        });
+    });
+
+    //Config datetimepicker
+    $('#datetimepicker').datetimepicker({
+        dayOfWeekStart: 1,
+        lang: 'en',
+        formatTime: 'H:i',
+        formatDate: 'd.m.Y',
+        defaultTime: '0:00',
+        minDate: '@DateTime.Today.ToShortDateString()',
+        timepickerScrollbar: false
+    });
+
+    //Get question template
+    var questionTemplate;
+    $.ajax({
+        url: '@Url.Action("GetQuestionTemplate")',
+        type: 'POST',
+        success: function (data) {
+            questionTemplate = data;
+        }
+    });
+
+    //Custom question checkboxes
+    function initQuestionCheckBoxes() {
+        $('input[type=checkbox]').change(function () {
+            if (this.checked) {
+                $('#cbQuestion' + this.value).addClass("hidden");
+                $('#cbQuestion' + this.value).attr("name", "");
+                $('#tbQuestion' + this.value).removeClass("hidden");
+                $('#tbQuestion' + this.value).attr("name", "questions[" + this.value + "].Text");
+            }
+            else {
+                $('#cbQuestion' + this.value).removeClass("hidden");
+                $('#cbQuestion' + this.value).attr("name", "questions[" + this.value + "].Text");
+                $('#tbQuestion' + this.value).addClass("hidden");
+                $('#tbQuestion' + this.value).attr("name", "");
+            }
+        });
+    }
+
+    //Question validation
+    function initQuestionValidation() {
+        $('[name^="questions["][name$="].Text"]').each(function () {
+            $(this).rules("add", {
+                required: true,
+                messages: {
+                    required: "Question text is required"
+                }
+            });
+        });
+    }
+
+    function createQuestion() {
+        $('#questions').append(questionTemplate.split('{0}').join(questionCount++));
+        initQuestionCheckBoxes();
+        initQuestionValidation();
+    }
+
+    var questionCount = 0;
+    (function wait() {
+        setTimeout(function () {
+            if (typeof questionTemplate == 'undefined')
+                wait();
+            else
+                createQuestion();
+        }, 100);
+    })();
+
+    //Add and remove questions
+    $('#btnAddQuestion').click(function () {
+        if (questionCount == 5)
+            return;
+
+        createQuestion();
+    });
+    $('#btnRemoveQuestion').click(function () {
+        if (questionCount == 1)
+            return;
+
+        $('#question' + --questionCount).remove();
+    });
+
+    //Skill checkboxes
+    var skillCount = 0;
+    $('#skills input[type=checkbox]').change(function () {
+        if (this.checked) {
+            $(this).attr("name", "skillIds[" + skillCount++ + "]");
+        }
+        else {
+            var num = this.name.charAt(9);
+            $('input[name="skillIds[' + --skillCount + ']"]').attr("name", "skillIds[" + num + "]");
+            $(this).attr("name", "");
+        }
+    });
+
+    //Form validate
+    jQuery.validator.addMethod(
+        "regexp",
+        function (value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        });
+
+    jQuery.validator.addMethod(
+        "notEqual",
+        function (value, element, param) {
+            return this.optional(element) || value !== param;
+        });
+
+    $('#form').validate({
+        rules: {
+            Title: {
+                required: true,
+                regexp: /^[a-zA-Z #/+-,.]{10,30}$/
+            },
+            JobCategoryId: {
+                notEqual: '00000000-0000-0000-0000-000000000000'
+            },
+            JobSubcategoryId: {
+                notEqual: '00000000-0000-0000-0000-000000000000'
+            },
+            ShortDescription: {
+                required: true,
+                regexp: /^[0-9a-zA-Z .,/#+-]{50,300}$/
+            },
+            Description: {
+                required: true,
+                regexp: /^[0-9a-zA-Z .,/#+-]{50,1000}$/
+            },
+            Deadline: {
+                required: true
+            },
+            Budget: {
+                required: true,
+                notEqual: '0.00',
+                regexp: /^[0-9]{1,5}.[0-9]{2}$/
+            }
+        },
+        messages: {
+            Title: {
+                required: "First name is required",
+                regexp: "First name must consist only of 10 to 30 latin letters"
+            },
+            JobCategoryId: {
+                notEqual: "Job category is required"
+            },
+            JobSubcategoryId: {
+                notEqual: "Job subcategory is required"
+            },
+            ShortDescription: {
+                required: "Short description is required",
+                regexp: "Short description name must consist only of 50 to 300 latin letters"
+            },
+            Description: {
+                required: "Description is required",
+                regexp: "Description name must consist only of 50 to 1000 latin letters"
+            },
+            Deadline: {
+                required: "Deadline is required"
+            },
+            Budget: {
+                required: "Budget is required",
+                notEqual: "Budget is required",
+                regexp: "Budget must be between 0.01 and 99999.99"
+            }
+        },
+        submitHandler: function (form) {
+            var postData = $(form).serializeArray();
+            var formURL = $(form).attr("action");
+            $.ajax({
+                url: formURL,
+                data: postData,
+                type: 'POST',
+                success: function (data) {
+                    if (data == '')
+                        $('#error').removeClass('hidden');
+                    else
+                        location = data;
+                }
+            });
+        }
+    });
+</script>

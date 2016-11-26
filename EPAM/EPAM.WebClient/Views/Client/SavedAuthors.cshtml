@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Saved Authors";
+    ViewBag.Menu = 1;
+    ViewBag.Menu2 = 1;
+
+    ViewBag.Num = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/SavedAuthors.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("AuthorsMenuBar")
+}
+
+@if (!ViewBag.HasAuthors)
+{
+    <h1>No Saved Authors</h1>
+}
+else
+{
+    <h1>Saved Authors</h1>
+    <div id="workSpace">
+        @foreach (EPAM.Model.Author item in ViewBag.Authors)
+        {
+            @Html.Partial("_AuthorPost", item)
+            ViewBag.Num++;
+        }
+    </div>
+
+    <script>
+        $(function () {
+            //Save author
+            $('div[id^="authorPost"]').each(function () {
+                var id = $(this).find('#info > input').val();
+
+                $(this).find('#saveButton > input').click(function () {
+                    if ($(this).hasClass("pressed")) {
+                        $.ajax({
+                            url: '@Url.Action("UnSaveAuthor")',
+                            data: { authorId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).removeClass("pressed");
+                    }
+                    else {
+                        $.ajax({
+                            url: '@Url.Action("SaveAuthor")',
+                            data: { authorId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).addClass("pressed");
+                    }
+                });
+            });
+        });
+    </script>
+}
+

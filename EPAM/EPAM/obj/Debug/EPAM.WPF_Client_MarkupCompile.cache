@@ -1,0 +1,20 @@
+﻿EPAM.WPF_Client
+
+
+winexe
+C#
+.cs
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM\obj\Debug\
+EPAM.WPF_Client
+none
+false
+DEBUG;TRACE
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM\App.xaml
+191236068740
+
+34-706422775
+18-528298177
+View\ClientCreateJobUC.xaml;View\ApplicationsUC.xaml;View\AuthorWindow.xaml;View\ClientFreelancersUC.xaml;View\ClientJobsUC.xaml;View\ClientProfileUC.xaml;View\ClientWindow.xaml;View\FindJobUC.xaml;View\JobPostUC.xaml;View\JobsUC.xaml;View\JobWindow.xaml;View\LogInWindow.xaml;View\MyJobsUC.xaml;View\PersonalInfoUC.xaml;View\ProfileUC.xaml;View\QuestionUC.xaml;View\RegistrationWindow.xaml;View\SavedJobsUC.xaml;View\TalksUC.xaml;
+
+True
+

@@ -1,0 +1,137 @@
+﻿/************************************ Content Areas ************************************/
+
+/* Page Wrapper */
+#page-wrapper {
+	position: relative;
+	text-align: left;
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+    min-height: calc(100% - 107px);
+}
+
+/************************************ Header ************************************/
+
+/* Header */
+#header {
+	float: left;
+	z-index: 998;
+	width: 100%;
+	padding: 15px 15px 15px 30px;
+	margin-bottom: 30px;
+	background: #33363c;
+	-webkit-border-bottom-right-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	-moz-border-radius-bottomright: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+/* Logo */
+#logo {
+	display: block;
+	float: left;
+	margin: 0;
+	line-height: 0;
+}
+
+/************************************ Body Navigation ************************************/
+
+/* Nav Wrapper */
+#nav, #person  {
+	color: #fff;
+	float: left;
+	position: relative;
+	z-index: 998;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-top: 0px;
+}
+#nav a, #person a {
+	color: #fff;
+	float: right;
+}
+#nav .menu {
+	float: left;
+	margin: 5px 0 0 0;
+	list-style-type: none;
+	list-style-position: outside;
+}
+#nav .menu li {
+	float: left;
+	position: relative;
+	list-style-type: none;
+	margin: 0 0 0 5px;
+	padding: 0;
+}
+#nav .menu li a {
+	text-decoration: none;
+	color: #fff;
+	font-size: 20px;
+	line-height: 25px;
+	padding: 10px 13px;
+	font-weight: bold;
+}
+#nav .menu li a:hover,
+#nav .menu li:hover > a {
+	color: #fff;
+	background: #26282d;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+li.selected {
+	color: #fff;
+	background: #26282d;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#person {
+    float: right;
+	margin-top: 18px;
+	margin-right: 10px;
+    text-align: right;
+}
+
+#content {
+	float: left;
+	text-align: center;
+	background: #fff;
+	padding: 50px 20px;
+	width: 100%;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+/* Copyright */
+#copyright {
+	margin-top: 50px;
+	float: left;
+	position: relative;
+	width: 100%;
+	background: #fff;
+	padding: 20px 0;
+	text-align: center;
+	font-size: 11px;
+	line-height: 17px;
+	color: #000;
+}
+
+#copyright a {
+	color: #33b524;
+}

@@ -1,0 +1,230 @@
+﻿@model EPAM.Model.JobFilter
+
+@{
+    ViewBag.Title = "FindJobs";
+    ViewBag.Menu = 0;
+    ViewBag.Menu2 = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Author/FindJobs.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<div id="bar">
+    <ul>
+        <li><a href="#filter">Filter</a></li>
+        <li><a href="#savedFilters">Saved filters</a></li>
+    </ul>
+    <form id="updateFilterForm" action="~/Author/FindJobs">
+        <div id="filter">
+            <h2>Filter</h2>
+            <input type="text" name="SearchString" placeholder="Search string" value="@Model.SearchString" />
+            <select id="categories" name="JobCategoryId">
+                <option value="@Guid.Empty">Job category</option>
+                @foreach (var item in ViewBag.JobCategories)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+            <div id="jobSubcategory">@Html.Partial("_JobSubcategory")</div>
+            <h3>Budget:</h3>
+            <div id="slider"></div>
+            <input id="min" type="text" readonly name="BudgetMin" placeholder="BudgetMin" value="@Model.BudgetMin" />
+            <input id="max" type="text" readonly name="BudgetMax" placeholder="BudgetMax" value="@Model.BudgetMax" />
+            <input id="datetimepicker" type="text" name="DeadlineAfter" placeholder="Deadline after"
+                   value="@((Model.DeadlineAfter != DateTime.MinValue) ?  @String.Format("{0:dd.MM.yyyy HH:mm}", Model.DeadlineAfter) : "")" />
+            <div id="save">
+                <input id="saveAs" type="button" value="Save as" />
+                <input id="saveTitle" type="text" name="Title" placeholder="Title" />
+            </div>
+            <div id="update">
+                <input id="update" type="button" value="Update" />
+            </div>
+        </div>
+    </form>
+    <div id="savedFilters"></div>
+</div>
+<div id="jobs">@Html.Partial("_Jobs", Model)</div>
+<script>
+    $(function () {
+        //Page event
+        function pageEvent() {
+            $('#pages input[type=button]').click(function () {
+                $('#page').val($(this).val());
+                $.ajax({
+                    url: '@Url.Action("GetJobsByFilter")',
+                    data: $('#filterForm').serializeArray(),
+                    type: 'POST',
+                    success: function (data) {
+                        $('#jobs').html(data);
+                        pageEvent();
+                    }
+                });
+            });
+        }
+
+        //Save job
+        function saveEvent() {
+            $('div[id^="jobPost"]').each(function () {
+                var id = $(this).find('#info > input').val();
+
+                $(this).find('#saveButton > input').click(function () {
+                    if ($(this).hasClass("pressed")) {
+                        $.ajax({
+                            url: '@Url.Action("UnSaveJob")',
+                            data: { jobId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).removeClass("pressed");
+                    }
+                    else {
+                        $.ajax({
+                            url: '@Url.Action("SaveJob")',
+                            data: { jobId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).addClass("pressed");
+                    }
+                });
+            });
+        }
+
+        //Set tabs
+        $('#bar').tabs({
+            activate: function (event, ui) {
+                if ($('#bar').tabs('option', 'active') == 1) {
+                    $.ajax({
+                        url: '@Url.Action("GetSavedFilters")',
+                        type: 'POST',
+                        success: function (data) {
+                            $('#savedFilters').html(data);
+
+                            $('div[id^=jobFilter]').each(function () {
+                                var div = $(this);
+
+                                div.find('h4').click(function () {
+                                    $.ajax({
+                                        url: '@Url.Action("GetJobsByFilterId")',
+                                        data: { jobFilterId: div.find('input').val() },
+                                        type: 'POST',
+                                        success: function (data) {
+                                            $('#jobs').html(data);
+                                            pageEvent();
+                                            saveEvent();
+                                        }
+                                    });
+                                });
+
+                                div.find('span').click(function () {
+                                    $.ajax({
+                                        url: '@Url.Action("RemoveFilter")',
+                                        data: { jobFilterId: div.find('input').val() },
+                                        type: 'POST',
+                                        success: function () {
+                                            div.remove();
+                                            if ($('#savedFilters').children().length == 0) {
+                                                $('#bar').tabs('option', 'active', 0);
+                                            }
+                                        }
+                                    });
+                                });
+                            });
+                        }
+                    });
+                }
+            }
+        });
+
+        //Select subcategories
+        $('select#categories').change(function () {
+            var id = $(this).val();
+
+            $.ajax({
+                url: '@Url.Action("GetJobSubcategories")',
+                data: { JobCategoryId: id },
+                type: 'POST',
+                success: function (data) {
+                    $('#jobSubcategory').html(data);
+                }
+            });
+        });
+
+        //Config budget slider
+        var values = [0, 50, 100, 500, 1000, 5000, 10000, 50000, 100000];
+        $('#slider').slider({
+            range: true,
+            min: 0,
+            max: values.length - 1,
+            values: [0, values.length - 1],
+            slide: function (event, ui) {
+                $('#min').val(values[ui.values[0]]);
+                $('#max').val(values[ui.values[1]]);
+            }
+        });
+
+        //Config datetimepicker
+        $('#datetimepicker').datetimepicker({
+            dayOfWeekStart: 1,
+            lang: 'en',
+            format: 'd.m.Y H:i',
+            defaultTime: '0:00',
+            minDate: '@DateTime.Today.ToShortDateString()',
+            timepickerScrollbar: false
+        });
+
+        //Scroll div#bar
+        $(document).scroll(function () {
+            if ($(document).scrollTop() > 250) {
+                $('#bar').addClass("fixed");
+            }
+            else {
+                $('#bar').removeClass("fixed");
+            }
+        });
+
+        //Call page event
+        pageEvent();
+
+        //Save filter
+        $('#saveAs').click(function () {
+            $.ajax({
+                url: '@Url.Action("SaveFilter")',
+                data: $('#updateFilterForm').serializeArray(),
+                type: 'POST',
+                success: function () {
+                    $('#saveTitle').val("");
+                }
+            });
+            $('#bar').tabs('option', 'active', 1);
+        });
+
+        //Call save event()
+        saveEvent();
+
+        //Update
+        $('#update').click(function () {
+            $.ajax({
+                url: '@Url.Action("GetJobsByFilter")',
+                data: $('#updateFilterForm').serializeArray(),
+                type: 'POST',
+                success: function (data) {
+                    $('#jobs').html(data);
+                    pageEvent();
+                    saveEvent();
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,35 @@
+﻿@model EPAM.Model.Author
+
+@{
+    ViewBag.Title = "AuthorOverview";
+    ViewBag.Menu = 1;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/AuthorOverview.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("AuthorsMenuBar")
+}
+
+<div id="title"><h1>Author Overview</h1></div>
+<div id="view">
+    <div id="photo">
+        <a title="Chameleon"><img src="~/Content/Images/photoMissing.png" width="200" height="200" alt="" /></a>
+    </div>
+    <div id="info">
+        <div><h1>@Model.Name @Model.SName@((Model.Title == null || Model.Title == "") ? "" : " - " + Model.Title)</h1></div>
+        <div><h2>@(Model.IsAvailable ? "Available" : "Not Available")</h2></div>
+        <div><h2>Hour rate - @String.Format("{0:F2}", Model.HourRate)$</h2></div>
+        <div><h2>TimeZone - @Model.TimeZone.Title, Local time - @(DateTime.UtcNow.AddHours(Model.TimeZone.UTCHourValue).ToShortTimeString())</h2></div>
+    </div>
+    <div id="overview">
+        <div id="overviewTitle"><h1>Overview</h1></div>
+        <div id="overviewText"><h4>@((Model.Overview == null || Model.Overview == "") ? "Overview left" : Model.Overview)</h4></div>
+    </div>
+</div>

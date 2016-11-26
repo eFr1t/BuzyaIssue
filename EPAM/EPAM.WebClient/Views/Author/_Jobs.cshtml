@@ -1,0 +1,42 @@
+﻿@model EPAM.Model.JobFilter
+
+@{
+    ViewBag.Num = 0;
+}
+
+<form id="filterForm">
+    <input id="page" type="hidden" name="page" value="@ViewBag.CurrentPage" />
+    <input type="hidden" name="BudgetMax" value="@Model.BudgetMax" />
+    <input type="hidden" name="BudgetMin" value="@Model.BudgetMin" />
+    <input type="hidden" name="DeadlineAfter" value="@Model.DeadlineAfter" />
+    <input type="hidden" name="JobCategoryId" value="@Model.JobCategoryId" />
+    <input type="hidden" name="JobSubcategoryId" value="@Model.JobSubcategoryId" />
+    <input type="hidden" name="SearchString" value="@Model.SearchString" />
+
+    @if (!ViewBag.HasJobs)
+    {
+        <h2>No jobs found</h2>
+    }
+    else
+    {
+        <div id="pages">
+            @foreach (var item in ViewBag.Pages)
+            {
+                <input type="button" value="@item" class="@(item == ViewBag.CurrentPage ? "pressed" : "")" />
+            }
+        </div>
+        <div>
+            @foreach (EPAM.Model.Job item in ViewBag.Jobs)
+            {
+                @Html.Partial("_JobPost", item)
+                ViewBag.Num++;
+            }
+        </div>
+        <div id="pages">
+            @foreach (var item in ViewBag.Pages)
+            {
+                <input type="button" value="@item" class="@(item == ViewBag.CurrentPage ? "pressed" : "")" />
+            }
+        </div>
+    }
+</form>

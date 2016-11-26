@@ -1,0 +1,120 @@
+﻿#bar {
+    float: left;
+}
+
+#filter {
+    width: 370px;
+    background: #f7f7f7;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.fixed {
+    position: fixed;
+    top: 20px;
+}
+
+#filter > input[type=text],
+#filter > select {
+    width: 346px;
+}
+
+#filter > h3 {
+    clear: both;
+}
+
+#hrSlider {
+    float: left;
+    width: 343px;
+    margin-bottom: 10px;
+}
+
+#hrMin {
+    float: left;
+    width: 75px !important;
+}
+
+#hrMax {
+    float: right;
+    width: 75px !important;
+}
+
+#pjSlider {
+    float: left;
+    width: 343px;
+    margin-bottom: 10px;
+}
+
+#pjMin {
+    float: left;
+    width: 75px !important;
+}
+
+#pjMax {
+    float: right;
+    width: 75px !important;
+}
+
+#skills {
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+}
+
+    #skills > div {
+        float: left;
+        margin-bottom: 10px;
+        clear: both;
+    }
+
+#pages {
+    margin-bottom: 10px;
+    float: right;
+}
+
+#authors {
+    float: right;
+    width: 760px;
+    padding: 10px;
+}
+
+div[id^=authorPost] {
+    float: left;
+    text-align: left;
+    background: #f7f7f7;
+    padding: 20px 20px 0px 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    div[id^=authorPost] a {
+        font-size: 20px;
+    }
+
+    div[id^=authorPost] > #info {
+        float: left;
+        width: 80%;
+    }
+
+    div[id^=authorPost] > #saveButton {
+        float: left;
+        width: 20%;
+        margin-top: 20px;
+        text-align: center;
+    }

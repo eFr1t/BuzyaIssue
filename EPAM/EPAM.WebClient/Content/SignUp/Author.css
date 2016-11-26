@@ -1,0 +1,21 @@
+﻿#content-title {
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 30px;
+	line-height: 40px;
+}
+
+#fields {
+	margin-top: 20px;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#fields input, select {
+	width: 100%;
+}
+
+#button {
+	margin-top: 20px;
+}

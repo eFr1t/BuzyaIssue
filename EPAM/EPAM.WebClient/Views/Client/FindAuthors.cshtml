@@ -1,0 +1,157 @@
+﻿@model EPAM.Model.AuthorFilter
+
+@{
+    ViewBag.Title = "Find Authors";
+    ViewBag.Menu = 1;
+    ViewBag.Menu2 = 0;
+
+    ViewBag.Num = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/FindAuthors.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("AuthorsMenuBar")
+}
+
+<div id="bar">
+    <form id="updateFilterForm" action="~/Author/FindJobs">
+        <div id="filter">
+            <h2>Filter</h2>
+            <input type="text" name="SearchString" placeholder="Search string" value="@Model.SearchString" />
+            <h3>Hour rate:</h3>
+            <div id="hrSlider"></div>
+            <input id="hrMin" type="text" readonly name="HourRateMin" placeholder="HourRateMin" value="@Model.HourRateMin" />
+            <input id="hrMax" type="text" readonly name="HourRateMax" placeholder="HourRateMax" value="@Model.HourRateMax" />
+            <h3>Count of past jobs:</h3>
+            <div id="pjSlider"></div>
+            <input id="pjMin" type="text" readonly name="CountOfPastJobsMin" placeholder="CountOfPastJobsMin" value="@Model.CountOfPastJobsMin" />
+            <input id="pjMax" type="text" readonly name="CountOfPastJobsMax" placeholder="CountOfPastJobsMax" value="@Model.CountOfPastJobsMax" />
+            <h3>Skills:</h3>
+            <div id="skills">
+                @foreach (var item in ViewBag.Skills)
+                {
+                    <div><input type="checkbox" value="@item.Id" />@item.Title</div>
+                }
+            </div>
+            <div id="update">
+                <input id="update" type="button" value="Update" />
+            </div>
+        </div>
+    </form>
+</div>
+<div id="authors">@Html.Partial("_Authors", Model)</div>
+<script>
+    $(function () {
+        //Save event
+        function saveEvent() {
+            $('div[id^="authorPost"]').each(function () {
+                var id = $(this).find('#info > input').val();
+
+                $(this).find('#saveButton > input').click(function () {
+                    if ($(this).hasClass("pressed")) {
+                        $.ajax({
+                            url: '@Url.Action("UnSaveAuthor")',
+                            data: { authorId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).removeClass("pressed");
+                    }
+                    else {
+                        $.ajax({
+                            url: '@Url.Action("SaveAuthor")',
+                            data: { authorId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).addClass("pressed");
+                    }
+                });
+            });
+        }
+
+        //Page event
+        function pageEvent() {
+            $('#pages input[type=button]').click(function () {
+                $('#page').val($(this).val());
+                $.ajax({
+                    url: '@Url.Action("GetAuthorssByFilter")',
+                    data: $('#filterForm').serializeArray(),
+                    type: 'POST',
+                    success: function (data) {
+                        $('#authors').html(data);
+                        pageEvent();
+                        saveEvent();
+                    }
+                });
+            });
+        }
+
+        //Config hour rate slider
+        var hrValues = [0, 1, 2, 5, 10, 20, 50, 100];
+        $('#hrSlider').slider({
+            range: true,
+            min: 0,
+            max: hrValues.length - 1,
+            values: [0, hrValues.length - 1],
+            slide: function (event, ui) {
+                $('#hrMin').val(hrValues[ui.values[0]]);
+                $('#hrMax').val(hrValues[ui.values[1]]);
+            }
+        });
+
+        //Config past jobs slider
+        var pjValues = [0, 1, 2, 5, 10, 20, 50, 100];
+        $('#pjSlider').slider({
+            range: true,
+            min: 0,
+            max: pjValues.length - 1,
+            values: [0, pjValues.length - 1],
+            slide: function (event, ui) {
+                $('#pjMin').val(pjValues[ui.values[0]]);
+                $('#pjMax').val(pjValues[ui.values[1]]);
+            }
+        });
+
+        //Scroll div#bar
+        $(document).scroll(function () {
+            if ($(document).scrollTop() > 250) {
+                $('#bar').addClass("fixed");
+            }
+            else {
+                $('#bar').removeClass("fixed");
+            }
+        });
+
+        //Call page event
+        pageEvent();
+
+        //Update
+        $('#update').click(function () {
+            $.ajax({
+                url: '@Url.Action("GetAuthorsByFilter")',
+                data: $('#updateFilterForm').serializeArray(),
+                type: 'POST',
+                success: function (data) {
+                    $('#authors').html(data);
+                    pageEvent();
+                    saveEvent();
+                }
+            });
+        });
+
+        //Call save event
+        saveEvent();
+    });
+</script>
+
+

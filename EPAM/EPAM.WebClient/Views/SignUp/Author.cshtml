@@ -1,0 +1,120 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutSignUp.cshtml";
+    ViewBag.Title = "Author";
+    ViewBag.CSS = Url.Content("~/Content/SignUp/Author.css");
+}
+
+<div id="content-title">Create a Free Author Account</div>
+Looking to hire? @Html.ActionLink("Sign up as a client", "Client", "SignUp")<br><br>
+<form id="form" method="post" action="~/SignUp/RegisterAuthor">
+    <div id="fields">
+        <input type="text" name="Name" placeholder="First Name" />
+        <input type="text" name="SName" placeholder="Last Name" />
+        <input type="text" name="Email" placeholder="Email" />
+        <select name="TimeZoneId">
+            <option value="@Guid.Empty">TimeZone</option>
+            @foreach (var item in ViewBag.TimeZones)
+            {
+                <option value="@item.Id">@item.Title</option>
+            }
+        </select>
+        <input name="Login" value="" placeholder="Login" />
+        <input name="Password" type="password" value="" placeholder="Password" id="Password" />
+        <input name="repassword" type="password" value="" placeholder="Repeat Password" />
+    </div>
+    <div id="button"><input type="submit" class="button" value="Get Started" /></div>
+    <label id="error" class="hidden">Error occurred while registration</label>
+</form>
+
+<script>
+    $(function () {
+        jQuery.validator.addMethod(
+            "regexp",
+            function (value, element, regexp) {
+                var re = new RegExp(regexp);
+                return this.optional(element) || re.test(value);
+            });
+
+        jQuery.validator.addMethod(
+            "notEqual",
+            function (value, element, param) {
+                return this.optional(element) || value !== param;
+            });
+
+        $('#form').validate({
+            rules: {
+                Name: {
+                    required: true,
+                    regexp: /^[a-zA-Z]{3,20}$/
+                },
+                SName: {
+                    required: true,
+                    regexp: /^[a-zA-Z]{3,20}$/
+                },
+                Email: {
+                    required: true,
+                    regexp: /^[0-9a-zA-Z_.]+@@[0-9a-zA-Z.-]+.[a-zA-Z]{2,4}$/
+                },
+                TimeZoneId: {
+                    notEqual: '00000000-0000-0000-0000-000000000000'
+                },
+                Login: {
+                    required: true,
+                    regexp: /^[a-zA-Z0-9]{5,20}$/
+                },
+                Password: {
+                    required: true,
+                    regexp: /^[a-zA-Z0-9]{5,20}$/
+                },
+                repassword: {
+                    required: true,
+                    equalTo: '#Password'
+                }
+            },
+            messages: {
+                Name: {
+                    required: "First name is required",
+                    regexp: "First name must consist only of 3 to 20 latin letters"
+                },
+                SName: {
+                    required: "Last name is required",
+                    regexp: "Last name must consist only of 3 to 20 latin letters"
+                },
+                Email: {
+                    required: "Email is required",
+                    regexp: "Incorrect email"
+                },
+                TimeZoneId: {
+                    notEqual: "TimeZone is required"
+                },
+                Login: {
+                    required: "Login is required",
+                    regexp: "Login must consist only of 5 to 20 latin letters or numbers"
+                },
+                Password: {
+                    required: "Password is required",
+                    regexp: "Password must consist only of 5 to 20 latin letters or numbers"
+                },
+                repassword: {
+                    required: "Repassword is required",
+                    equalTo: "Repeat password correctly"
+                }
+            },
+            submitHandler: function (form) {
+                var postData = $(form).serializeArray();
+                var formURL = $(form).attr("action");
+                $.ajax({
+                    url: formURL,
+                    data: postData,
+                    type: 'POST',
+                    success: function (data) {
+                        if (data == '')
+                            $('#error').removeClass('hidden');
+                        else
+                            location = data;
+                    }
+                });
+            }
+        });
+    });
+</script>

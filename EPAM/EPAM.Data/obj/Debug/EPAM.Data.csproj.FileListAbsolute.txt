@@ -1,0 +1,5 @@
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Data\bin\Debug\EPAM.Data.dll
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Data\bin\Debug\EPAM.Data.pdb
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Data\obj\Debug\EPAM.Data.csprojResolveAssemblyReference.cache
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Data\obj\Debug\EPAM.Data.dll
+C:\Users\eFr1t\documents\visual studio 2013\Projects\EPAM\EPAM.Data\obj\Debug\EPAM.Data.pdb

@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Past Authors";
+    ViewBag.Menu = 1;
+    ViewBag.Menu2 = 2;
+
+    ViewBag.Num = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/MyAuthors.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("AuthorsMenuBar")
+}
+
+<div id="accordion">
+    <h1>Ongoing Authors</h1>
+    <div>
+        @if (ViewBag.HasOngoingAuthors)
+        {
+            foreach (EPAM.Model.Author item in ViewBag.OngoingAuthors)
+            {
+                <div id="authorPost">
+                    <div id="info">
+                        <input type="hidden" name="authorId" value="@item.Id" />
+                        @Html.ActionLink(item.Name + " " + item.SName + " " + ((item.Title == null || item.Title == "") ? "" : " - " + item.Title),
+                            "AuthorOverview", "Client", new { authorId = item.Id }, null)
+                        <h4>Available - @item.IsAvailable, Hour rate - @item.HourRate$</h4>
+                        <h5>@item.Overview</h5>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h3>No Ongoing Authors</h3>
+        }
+    </div>
+    <h1>Past Authors</h1>
+    <div>
+        @if (ViewBag.HasPastAuthors)
+        {
+            foreach (EPAM.Model.Author item in ViewBag.PastAuthors)
+            {
+                <div id="authorPost">
+                    <div id="info">
+                        <input type="hidden" name="authorId" value="@item.Id" />                        
+                        @Html.ActionLink(item.Name + " " + item.SName + " " + ((item.Title == null || item.Title == "") ? "" : " - " + item.Title),
+                            "AuthorOverview", "Client", new { authorId = item.Id }, null)
+                        <h4>Available - @item.IsAvailable, Hour rate - @item.HourRate$</h4>
+                        <h5>@item.Overview</h5>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h3>No Past Authors</h3>
+        }
+    </div>
+</div>
+
+<script>
+    $(function () {
+        //Save author
+        $('div[id^="authorPost"]').each(function () {
+            var id = $(this).find('#info > input').val();
+
+            $(this).find('#saveButton > input').click(function () {
+                if ($(this).hasClass("pressed")) {
+                    $.ajax({
+                        url: '@Url.Action("UnSaveAuthor")',
+                        data: { authorId: id },
+                        type: 'POST',
+                        success: function () {
+                        }
+                    });
+                    $(this).removeClass("pressed");
+                }
+                else {
+                    $.ajax({
+                        url: '@Url.Action("SaveAuthor")',
+                        data: { authorId: id },
+                        type: 'POST',
+                        success: function () {
+                        }
+                    });
+                    $(this).addClass("pressed");
+                }
+            });
+        });
+
+        //Accordion
+        $('#accordion').accordion({
+            collapsible: true,
+            heightStyle: "content",
+
+            beforeActivate: function (event, ui) {
+                // The accordion believes a panel is being opened
+                if (ui.newHeader[0]) {
+                    var currHeader = ui.newHeader;
+                    var currContent = currHeader.next('.ui-accordion-content');
+                    // The accordion believes a panel is being closed
+                } else {
+                    var currHeader = ui.oldHeader;
+                    var currContent = currHeader.next('.ui-accordion-content');
+                }
+                // Since we've changed the default behavior, this detects the actual status
+                var isPanelSelected = currHeader.attr('aria-selected') == 'true';
+
+                // Toggle the panel's header
+                currHeader.toggleClass('ui-corner-all', isPanelSelected).toggleClass('accordion-header-active ui-state-active ui-corner-top', !isPanelSelected).attr('aria-selected', ((!isPanelSelected).toString()));
+
+                // Toggle the panel's icon
+                currHeader.children('.ui-icon').toggleClass('ui-icon-triangle-1-e', isPanelSelected).toggleClass('ui-icon-triangle-1-s', !isPanelSelected);
+
+                // Toggle the panel's content
+                currContent.toggleClass('accordion-content-active', !isPanelSelected)
+                if (isPanelSelected) { currContent.slideUp(); } else { currContent.slideDown(); }
+
+                return false; // Cancel the default action
+            }
+        });
+    });
+</script>
+

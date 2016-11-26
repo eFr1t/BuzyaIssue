@@ -1,0 +1,32 @@
+﻿#workSpace {
+    text-align: left;
+    margin-left: 20px;
+    width: 800px;
+}
+
+#title,
+#descTitle,
+#questionsTitle {
+    margin-left: 20px;
+}
+
+#info,
+#questions {    
+    background: #f7f7f7;
+    padding: 0px 20px 0px 20px;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#info {
+    padding: 20px 20px 0px 20px;
+}
+
+#info a {
+    font-size: 20px;
+}

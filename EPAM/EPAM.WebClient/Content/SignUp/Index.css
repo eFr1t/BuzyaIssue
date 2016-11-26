@@ -1,0 +1,51 @@
+﻿#content-title {
+	margin-bottom: 50px;
+	text-align: center;
+	font-size: 30px;
+	line-height: 40px;
+}
+
+#content #left-center {	
+	float: left;
+}
+
+#content #left {	
+	float: left;
+	width: 530px;
+	text-align: center;
+}
+
+#content #center {	
+	float: right;
+	width: 100px;
+	text-align: center;
+}
+
+#content #right {		
+	float: right;
+	width: 530px;
+	text-align: center;
+}
+
+#content .big {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 30px;
+	line-height: 40px;
+}
+
+#content .small {
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+}
+
+#content .verticalLine {
+	height: 150px;
+	margin-left: 46px;
+    border-left: 4px solid #33363c;
+}
+
+#content .button {
+	margin-top: 50px;
+}

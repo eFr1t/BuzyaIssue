@@ -1,0 +1,19 @@
+﻿@{
+    int num = 0;
+}
+
+@if (!ViewBag.HasSavedFilters)
+{
+    <h2>No saved filters</h2>
+}
+else
+{
+    foreach (EPAM.Model.JobFilter item in ViewBag.SavedFilters)
+    {
+        <div id="jobFilter@(num)">
+            <input type="hidden" value="@item.Id"/>
+            <span></span>
+            <h4>@item.Title</h4>
+        </div>
+    }
+}

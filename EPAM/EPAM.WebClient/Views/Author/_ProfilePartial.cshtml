@@ -1,0 +1,65 @@
+﻿@model EPAM.Model.Author
+
+<div id="view">
+    <div id="photo">
+        <a title="Chameleon"><img src="~/Content/Images/photoMissing.png" width="200" height="200" alt="" /></a>
+    </div>
+    <div id="info">
+        <div><h1>@Model.Name @Model.SName@((Model.Title == null || Model.Title == "") ? "" : " - " + Model.Title)</h1></div>
+        <div><h2>@(Model.IsAvailable ? "Available" : "Not Available")</h2></div>
+        <div><h2>Hour rate - @String.Format("{0:F2}", Model.HourRate)$</h2></div>
+        <div><h2>TimeZone - @Model.TimeZone.Title, Local time - @(DateTime.UtcNow.AddHours(Model.TimeZone.UTCHourValue).ToShortTimeString())</h2></div>
+    </div>
+    @if (ViewBag.IsOwner)
+    {
+        <div id="editDiv">
+            <input id="edit" type="button" value="Edit" />
+        </div>
+    }
+    <div id="overview">
+        <div id="overviewTitle"><h1>Overview</h1></div>
+        <div id="overviewText"><h4>@((Model.Overview == null || Model.Overview == "") ? "Overview left" : Model.Overview)</h4></div>
+    </div>
+</div>
+@if (ViewBag.IsOwner)
+{
+    <div id="editForm" class="hidden">
+        <form method="post" action="@Url.Action("SaveAuthor")">
+            <div id="photo">
+                <a title="Chameleon"><img src="~/Content/Images/photoMissing.png" width="200" height="200" alt="" /></a>
+            </div>
+            <div id="infoEdit">
+                <div>
+                    <input type="text" name="Name" placeholder="First Name" value="@Model.Name" />
+                    <input type="text" name="SName" placeholder="Last Name" value="@Model.SName" />
+                    <input type="text" name="Title" placeholder="Title" value="@Model.Title" />
+                </div>
+                <div>
+                    <input type="radio" name="IsAvailable" value="true" @(Model.IsAvailable ? "checked" : "") />Available
+                    <input type="radio" name="IsAvailable" value="false" @(!Model.IsAvailable ? "checked" : "") />Not Available
+                </div>
+                <div>
+                    Hour rate: $
+                    <input type="text" name="HourRate" value="@String.Format("{0:F2}", Model.HourRate)" />
+                </div>
+                <div>
+                    <select name="TimeZoneId">
+                        <option value="@Guid.Empty">TimeZone</option>
+                        @foreach (var item in ViewBag.TimeZones)
+                        {
+                            <option value="@item.Id" @(Model.TimeZoneId == item.Id ? "selected" : "")>@item.Title</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div id="editDiv">
+                <input id="saveEdit" type="submit" value="Save Edit" />
+            </div>
+            <div id="overview">
+                <div id="overviewTitle"><h1>Overview</h1></div>
+                <div><textarea name="Overview" rows="10" placeholder="Overview">@Model.Overview</textarea></div>
+            </div>
+        </form>
+    </div>
+}
+

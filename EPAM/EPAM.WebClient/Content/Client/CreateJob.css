@@ -1,0 +1,43 @@
+﻿#workSpace {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+textarea, 
+select,
+input[type="text"] {
+    width: 100%;
+}
+
+#budget {
+    float: right;
+}
+
+#budget input[type="text"] {
+    width: 95px;
+}
+
+#questions {
+    clear: both;
+}
+
+#skills {
+    font-size: 14px;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+    -moz-column-count:2;
+    -webkit-column-count:2;
+    column-count:2;
+}
+
+#skills div {
+    float: left;
+    margin-bottom: 10px;
+    clear: both;
+}
+
+#button {
+	margin-top: 20px;
+}

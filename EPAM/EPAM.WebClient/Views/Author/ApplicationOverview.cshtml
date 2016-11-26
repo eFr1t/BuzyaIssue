@@ -1,0 +1,38 @@
+﻿@model EPAM.Model.Application
+
+@{
+    ViewBag.Title = "ApplicationOverview";
+    ViewBag.Menu = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Author/ApplicationOverview.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<div id="workSpace">
+    <h1>Application Overview</h1>
+    <div id="info">
+        @Html.ActionLink(Model.Job.Title, "JobOverview", "Author", new { jobId = Model.Job.Id }, null)
+        <h3>@Model.Job.ShortDescription</h3>
+    </div>
+    <h1 id="questionsTitle">Questions:</h1>
+    <form method="post" action="@Url.Action("ApproveApplication")">
+        <input type="hidden" name="applicationId" value="@Model.Id" />
+        <div id="questions">
+            @foreach (var item in @Model.Answers)
+            {
+                <h3>@item.Question.Text</h3>
+                <h4>@item.Text</h4>
+            }
+        </div>
+    </form>
+</div>
+

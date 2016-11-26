@@ -1,0 +1,58 @@
+﻿@model EPAM.Model.Client
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.Menu = 3;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/Profile.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+<div id="myProfile"><h1>@(ViewBag.IsOwner ? "My Profile" : "Client Overview")</h1></div>
+<div id="partial">@Html.Partial("_ProfilePartial", Model)</div>
+@if (ViewBag.IsOwner)
+{
+    <script>
+        $(function () {
+            function initPage() {
+                $('#edit').click(function () {
+                    $('#view').addClass("hidden");
+                    $('#editForm').removeClass("hidden");
+                });
+
+                $('input[name="IsCompany"]').change(function () {
+                    if ($(this).val() === "true") {
+                        $('#companyName').removeClass("hidden");
+                    }
+                    else {
+                        $('#companyName').addClass("hidden");
+                    }
+                });
+
+                $('form').validate({
+                    submitHandler: function (form) {
+                        var postData = $(form).serializeArray();
+                        var formURL = $(form).attr("action");
+                        $.ajax({
+                            url: formURL,
+                            data: postData,
+                            type: 'POST',
+                            success: function (data) {
+                                $('#partial').html(data);
+                                initPage();
+                            }
+                        });
+                    }
+                });
+            };
+
+            initPage();
+        });
+    </script>
+}
+

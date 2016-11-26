@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Applications";
+    ViewBag.Menu = 0;
+    ViewBag.Menu2 = 3;
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<h2>Applications - @Session["PersonId"]</h2>
+

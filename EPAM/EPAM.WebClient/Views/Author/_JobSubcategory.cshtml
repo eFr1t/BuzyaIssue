@@ -1,0 +1,25 @@
+﻿@{
+    if (ViewBag.HasItems == null)
+    {
+        ViewBag.HasItems = false;        
+    }
+    if (ViewBag.JobSubcategories == null)
+    {
+        ViewBag.JobSubcategories = new List<Object>();            
+    }
+}
+
+@if (ViewBag.HasItems)
+{
+    <select id="subcategories" name="JobSubcategoryId"
+            @if (!ViewBag.HasItems) { @: disabled
+                        }>
+        <option value="@Guid.Empty">Job subcategory</option>
+        @foreach (var item in ViewBag.JobSubcategories)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
+}
+
+

@@ -1,0 +1,59 @@
+﻿@model EPAM.Model.Job
+
+@{
+    ViewBag.Title = "JobApply";
+    ViewBag.Menu = 0;
+
+    int num = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Author/JobApply.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<div id="workSpace">
+    <h1>Create application</h1>
+    <div id="info">
+        <h2 id="title">@Model.Title</h2>
+        <h3>@Model.ShortDescription</h3>
+    </div>
+    <h1 id="questionsTitle">Questions:</h1>
+    <form method="post" action="@Url.Action("SaveApply")">
+        <input type="hidden" name="jobId" value="@Model.Id" />
+        <div id="questions">
+            @foreach (var item in @Model.Questions)
+            {
+                <h3>@item.Text</h3>
+                <input type="hidden" name="answers[@(num)].QuestionId" value="@item.Id"/>
+                <textarea name="answers[@(num++)].Text" rows="5" placeholder="Answer"></textarea>
+            }
+        </div>
+        <input id="apply" type="submit" value="Apply" />
+    </form>
+</div>
+
+<script>
+    $(function () {
+        $('form').validate({
+            submitHandler: function (form) {
+                $.ajax({
+                    url: $(form).attr("action"),
+                    data: $(form).serializeArray(),
+                    type: 'POST',
+                    success: function (data) {
+                        if(data)
+                            location = "/Author/JobOverview?jobId=@Model.Id";
+                    }
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,6 @@
+﻿<ul id="menu-header" class="menu">
+    <li class="@(ViewBag.Menu2 == 0 ? "selected" : "")">@Html.ActionLink("Find Jobs", "FindJobs", "Author")</li>
+    <li class="@(ViewBag.Menu2 == 1 ? "selected" : "")">@Html.ActionLink("Saved Jobs", "SavedJobs", "Author")</li>
+    <li class="@(ViewBag.Menu2 == 2 ? "selected" : "")">@Html.ActionLink("My Jobs", "MyJobs", "Author")</li>
+    <li class="@(ViewBag.Menu2 == 3 ? "selected" : "")">@Html.ActionLink("My Applications", "MyApplications")</li>
+</ul>     

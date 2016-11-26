@@ -1,0 +1,59 @@
+﻿#title {
+    float: left;
+    margin-left: 20px;
+}
+
+#photo {
+    clear: left;
+    float: left;
+}
+  
+#info {  
+    float:left;
+    margin-left: 20px;    
+	background: #f7f7f7;
+	padding: 0px 20px 0px 20px;
+	border: 2px solid #c0c0c0;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+#info > div {
+    float: left;
+    clear: both;
+}
+
+#overview {
+    float: left;
+    clear: both;
+}
+
+#overview > div {
+    float: left;
+    clear: both;
+}
+
+#overviewTitle {
+    margin-left: 20px;    
+}
+
+#overviewText {
+	background: #f7f7f7;
+	padding: 0px 20px 0px 20px;
+	border: 2px solid #c0c0c0;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+#overview > div > h4 {
+    width: 525px;
+    text-align: left;
+}

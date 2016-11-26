@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "SavedJobs";
+    ViewBag.Menu = 0;
+    ViewBag.Menu2 = 1;
+
+    ViewBag.Num = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Author/SavedJobs.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+@if (!ViewBag.HasJobs)
+{
+    <h1>No Saved Jobs</h1>
+}
+else
+{
+    <h1>Saved Jobs</h1>
+    <div>
+        @foreach (EPAM.Model.Job item in ViewBag.Jobs)
+        {
+            @Html.Partial("_JobPost", item)
+            ViewBag.Num++;
+        }
+    </div>
+
+    <script>
+        $(function () {
+            //Save job
+            $('div[id^="jobPost"]').each(function () {
+                var id = $(this).find('#info > input').val();
+
+                $(this).find('#saveButton > input').click(function () {
+                    if ($(this).hasClass("pressed")) {
+                        $.ajax({
+                            url: '@Url.Action("UnSaveJob")',
+                            data: { jobId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).removeClass("pressed");
+                    }
+                    else {
+                        $.ajax({
+                            url: '@Url.Action("SaveJob")',
+                            data: { jobId: id },
+                            type: 'POST',
+                            success: function () {
+                            }
+                        });
+                        $(this).addClass("pressed");
+                    }
+                });
+            });
+        });
+    </script>
+}
+

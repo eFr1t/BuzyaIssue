@@ -1,0 +1,61 @@
+﻿#workSpace {
+    text-align: left;
+    margin-left: 180px;
+    width: 800px;
+}
+
+#title,
+#descTitle,
+#questionsTitle,
+#applicationsTitle {
+    margin-left: 20px;
+}
+
+#info,
+#desc,
+#questions,
+#applications div {    
+    background: #f7f7f7;
+    padding: 0px 20px 0px 20px;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#applications div {
+    padding: 20px 20px 0px 20px;
+    margin-bottom: 10px;
+}
+
+#applications a {
+    font-size: 20px;
+}
+
+#authorPost {
+    float: left;
+    text-align: left;
+    background: #f7f7f7;
+    padding: 20px 20px 0px 20px;
+    margin-bottom: 10px;
+    width: 700px;
+    border: 2px solid #c0c0c0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    #authorPost a {
+        font-size: 20px;
+    }
+
+    #authorPost > div {
+        float: left;
+        width: 500px;
+    }

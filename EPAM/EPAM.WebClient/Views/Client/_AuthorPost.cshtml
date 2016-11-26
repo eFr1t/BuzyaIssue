@@ -1,0 +1,14 @@
+﻿@model EPAM.Model.Author
+
+<div id="authorPost@(ViewBag.Num)">
+    <div id="info">
+        <input type="hidden" name="authorId" value="@Model.Id" />
+        @Html.ActionLink(Model.Name + " " + Model.SName + " " + ((Model.Title == null || Model.Title == "") ? "" : " - " + Model.Title),
+            "AuthorOverview", "Client", new { authorId = Model.Id }, null)
+        <h4>Available - @Model.IsAvailable, Hour rate - @Model.HourRate$</h4>
+        <h5>@Model.Overview</h5>
+    </div>
+    <div id="saveButton">
+        <input type="button" value="Save" class="@(@Model.IsSavedByClientId((Guid)Session["PersonId"]) ? "pressed" : "")" />
+    </div>
+</div>

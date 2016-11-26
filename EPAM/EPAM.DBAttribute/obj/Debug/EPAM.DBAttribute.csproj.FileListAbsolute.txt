@@ -1,0 +1,5 @@
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.DBAttribute\bin\Debug\EPAM.DBAttribute.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.DBAttribute\bin\Debug\EPAM.DBAttribute.pdb
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.DBAttribute\obj\Debug\EPAM.DBAttribute.csprojResolveAssemblyReference.cache
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.DBAttribute\obj\Debug\EPAM.DBAttribute.dll
+C:\Users\eFr1t\Documents\Visual Studio 2013\Projects\EPAM\EPAM.DBAttribute\obj\Debug\EPAM.DBAttribute.pdb

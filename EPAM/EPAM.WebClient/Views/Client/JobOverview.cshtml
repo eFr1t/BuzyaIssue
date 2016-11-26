@@ -1,0 +1,74 @@
+﻿@model EPAM.Model.Job
+
+@{
+    ViewBag.Title = "Job Overview";
+    ViewBag.Menu = 0;
+
+    string Skills = string.Join(", ", Model.Skills.Select(s => s.Title));
+    int num = 1;
+    string Questions = num++ + ") " + string.Join("\n" + num++ + ") ", Model.Questions.Select(q => q.Text));
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/JobOverview.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<h1>Job Overview</h1>
+<div id="workSpace">
+    <h1 id="title">@Model.Title</h1>
+    <div id="info">
+        <h3>@Model.JobCategory.Name, @Model.JobSubcategory.Name
+            Skills: @Skills</h3>
+        <h3>Deadline - @Model.Deadline, Budget - @Model.Budget$</h3>
+    </div>
+    <h1 id="descTitle">Description</h1>
+    <div id="desc"><h4>@Model.Description</h4></div>
+    <h1 id="questionsTitle">Questions:</h1>
+    <div id="questions"><h3>@Questions</h3></div>
+    <h1 id="applicationsTitle">Applications:</h1>
+    @if (Model.Author != null)
+    {
+        <h3>Already in progress</h3>
+        <div id="authorPost">
+            <div>
+                <input type="hidden" name="authorId" value="@Model.Author.Id" />
+                @Html.ActionLink(Model.Author.Name + " " + Model.Author.SName + " " + ((Model.Author.Title == null || Model.Author.Title == "") ? "" : " - " + Model.Author.Title),
+                        "AuthorOverview", "Client", new { authorId = Model.Author.Id }, null)
+                <h4>Available - @Model.Author.IsAvailable, Hour rate - @Model.Author.HourRate$</h4>
+                <h5>@Model.Author.Overview</h5>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="applications">
+            @if (Enumerable.Count(Model.Applications.Where(i => i.IsClosed == false)) == 0)
+            {
+                <h3>No one has applied</h3>
+            }
+            else
+            {
+                foreach (EPAM.Model.Application item in Model.Applications.Where(i => i.IsClosed == false))
+                {
+                    <div>
+                        <input type="hidden" name="applicationId" value="@Model.Id" />
+                        @Html.ActionLink(item.Author.Name + item.Author.SName, "ApplicationOverview", "Client", new { applicationId = item.Id }, null)
+                        @if (item.Author.Title != null && item.Author.Title != "")
+                        {
+                            <h2>Author title - @item.Author.Title</h2>
+                        }
+                        <h4>Hour rate - @String.Format("{0:F2}$", item.Author.HourRate)</h4>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>

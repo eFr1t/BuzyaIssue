@@ -1,0 +1,34 @@
+﻿@model EPAM.Model.Job
+
+@{
+    TimeSpan posted = DateTime.Now - Model.PostedDate;
+    String postedString = "";
+    if (posted.TotalMinutes < 60)
+    {
+        postedString = posted.Minutes + " minutes";
+    }
+    else if (posted.TotalHours < 24)
+    {
+        postedString = posted.Hours + " hours";
+    }
+    else
+    {
+        postedString = posted.Days + " days";
+    }
+}
+
+<div id="jobPost@(ViewBag.Num)">
+    <div id="info">
+        <input type="hidden" name="jobId" value="@Model.Id" />
+        @Html.ActionLink(Model.Title, "JobOverview", "Author", new { jobId = Model.Id }, null)
+        <h4>Posted @postedString ago</h4>
+        <h5>@Model.ShortDescription<br />
+            Job category - @Model.JobCategory.Name, Job subcategory - @Model.JobSubcategory.Name
+            Posted date - @Model.PostedDate, Deadline - @Model.Deadline
+            Budget - @Model.Budget$
+        </h5>
+    </div>
+    <div id="saveButton">
+        <input type="button" value="Save" class="@(@Model.IsSavedByAuthorId((Guid)Session["PersonId"]) ? "pressed" : "")" />
+    </div>
+</div>

@@ -1,0 +1,123 @@
+﻿<Application x:Class="EPAM.Admin.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"   
+             xmlns:gui="clr-namespace:EPAM.Admin.GUIElements"
+             StartupUri="View/AdminWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="{x:Type Control}" x:Key="fontStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Courier New"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <SolidColorBrush x:Key="MainBrush" Color="Green"/>
+        <SolidColorBrush x:Key="DisabledBrush" Color="Gray"/>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Courier New"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Foreground" Value="{DynamicResource DisabledBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource fontStyle}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <ContentControl>
+                            <Grid>
+                                <Rectangle HorizontalAlignment="Stretch"    
+                                       VerticalAlignment="Stretch"
+                                       Stroke="Transparent"    
+                                       RadiusX="5" RadiusY="5" StrokeThickness="3"    
+                                       Fill="{TemplateBinding Background}" />
+                                <Rectangle HorizontalAlignment="Stretch"    
+                                       VerticalAlignment="Stretch"    
+                                       Stroke="{TemplateBinding Foreground}"    
+                                       RadiusX="5" RadiusY="5" StrokeThickness="3"    
+                                       Fill="Transparent"/>
+                                <DockPanel>
+                                    <TextBlock Margin="20" Text="{TemplateBinding Label.Content}" 
+                                           Foreground="{TemplateBinding Foreground}"/>
+                                </DockPanel>
+                            </Grid>
+                        </ContentControl>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="ToggleButton.IsChecked" Value="False">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="{DynamicResource MainBrush}"/>
+                            </Trigger>
+                            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="{DynamicResource MainBrush}"/>
+                                <Setter Property="Background" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource fontStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="bg" BorderBrush="{DynamicResource DisabledBrush}" BorderThickness="2">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="bg" Value="{DynamicResource MainBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" TargetName="bg" Value="{DynamicResource MainBrush}"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="gui:ScrollingListBox">
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource fontStyle}">
+            <Setter Property="Background" Value="{DynamicResource MainBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle HorizontalAlignment="Stretch"    
+                                       VerticalAlignment="Stretch"
+                                       Stroke="Transparent"    
+                                       RadiusX="5" RadiusY="5" StrokeThickness="3"    
+                                       Fill="{TemplateBinding Background}"/>
+                            <DockPanel>
+                                <TextBlock Margin="7 5 7 5" Text="{TemplateBinding Label.Content}" 
+                                           Foreground="{TemplateBinding Foreground}"
+                                           TextAlignment="Center"/>
+                            </DockPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource DisabledBrush}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="{DynamicResource MainBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>

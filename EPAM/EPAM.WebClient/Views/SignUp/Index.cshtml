@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutSignUp.cshtml";
+    ViewBag.Title = "Sign Up";
+    ViewBag.CSS = Url.Content("~/Content/SignUp/Index.css");
+}
+
+<div id="content-title">
+    Let's get started!<br>
+    First, tell us what you're looking for.
+</div>
+<div id="left-center">
+    <div id="left">
+        <a title="Client"><img src="/Content/Images/client.png" width="100" height="100" alt="" /></a>
+        <div class="big">I want to hire a freelancer<br><br></div>
+        <div class="small">Find, collaborate with, and pay an expert.</div>
+        <div class="button">@Html.ActionLink("Hire", "Client", "SignUp", null, new { @class = "button" })</div>
+    </div>
+    <div id="center">
+        <div class="verticalLine"></div>
+        <div class="big">OR</div>
+        <div class="verticalLine"></div>
+    </div>
+</div>
+<div id="right">
+    <a title="Author"><img src="/Content/Images/author.png" width="100" height="100" alt="" /></a>
+    <div class="big">I'm looking for online work<br><br></div>
+    <div class="small">Find freelance projects and grow your business.</div>
+    <div class="button">@Html.ActionLink("Work", "Author", "SignUp", null, new { @class = "button" })</div>
+</div>

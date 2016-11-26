@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="EPAM.View.ClientJobsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10 10 10 5" Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="ToggleButton" BasedOn="{StaticResource tgBase}"/>
+            </StackPanel.Resources>
+            <ToggleButton Content="Create Job" Checked="tbChecked" IsChecked="{Binding IsCreateJob}"/>
+            <ToggleButton Content="My Jobs" Checked="tbChecked" IsChecked="{Binding IsMyJobs}"/>
+            <ToggleButton Content="My Contracts" Checked="tbChecked" IsChecked="{Binding IsMyContracts}"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Margin="10 5 10 10" Name="ContentViewer" VerticalScrollBarVisibility="Auto" Content="{Binding CurrentUC}"/> 
+    </Grid>
+</UserControl>

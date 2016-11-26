@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "MyApplications";
+    ViewBag.Menu = 0;
+    ViewBag.Menu2 = 3;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Author/MyApplications.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<div id="accordion">
+    <h1>Ongoing Applications</h1>
+    <div>
+        @if (ViewBag.HasOngoingApplications)
+        {
+            foreach (EPAM.Model.Application item in ViewBag.OngoingApplications)
+            {
+                <div id="applicationPost">
+                    <div>
+                        <input type="hidden" name="applicationId" value="@item.Id" />
+                        @Html.ActionLink(item.Job.Title, "ApplicationOverview", "Author", new { applicationId = item.Id }, null)
+                        <h5>@item.Job.ShortDescription</h5>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h3>No Ongoing Applications</h3>
+        }
+    </div>
+    <h1>Past Applications</h1>
+    <div>
+        @if (ViewBag.HasPastApplications)
+        {
+            foreach (EPAM.Model.Application item in ViewBag.PastApplications)
+            {
+                <div id="applicationPost">
+                    <div>
+                        <input type="hidden" name="applicationId" value="@item.Id" />
+                        @Html.ActionLink(item.Job.Title, "ApplicationOverview", "Author", new { applicationId = item.Id }, null)
+                        <h5>@item.Job.ShortDescription</h5>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h3>No Past Applications</h3>
+        }
+    </div>
+</div>
+
+<script>
+    $(function () {
+        //Accordion
+        $('#accordion').accordion({
+            collapsible: true,
+            heightStyle: "content",
+
+            beforeActivate: function (event, ui) {
+                // The accordion believes a panel is being opened
+                if (ui.newHeader[0]) {
+                    var currHeader = ui.newHeader;
+                    var currContent = currHeader.next('.ui-accordion-content');
+                    // The accordion believes a panel is being closed
+                } else {
+                    var currHeader = ui.oldHeader;
+                    var currContent = currHeader.next('.ui-accordion-content');
+                }
+                // Since we've changed the default behavior, this detects the actual status
+                var isPanelSelected = currHeader.attr('aria-selected') == 'true';
+
+                // Toggle the panel's header
+                currHeader.toggleClass('ui-corner-all', isPanelSelected).toggleClass('accordion-header-active ui-state-active ui-corner-top', !isPanelSelected).attr('aria-selected', ((!isPanelSelected).toString()));
+
+                // Toggle the panel's icon
+                currHeader.children('.ui-icon').toggleClass('ui-icon-triangle-1-e', isPanelSelected).toggleClass('ui-icon-triangle-1-s', !isPanelSelected);
+
+                // Toggle the panel's content
+                currContent.toggleClass('accordion-content-active', !isPanelSelected)
+                if (isPanelSelected) { currContent.slideUp(); } else { currContent.slideDown(); }
+
+                return false; // Cancel the default action
+            }
+        });
+    });
+</script>

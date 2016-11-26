@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Posted Jobs";
+    ViewBag.Menu = 0;
+    ViewBag.Menu2 = 1;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/PostedJobs.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+@if (!ViewBag.HasJobs)
+{
+    <h1>No Posted Jobs</h1>
+}
+else
+{
+    <h1>Posted Jobs</h1>
+    <div id="workSpace">
+        @foreach (EPAM.Model.Job item in ViewBag.Jobs)
+        {
+            @Html.Partial("_ClientJobPost", item);
+        }
+    </div>
+}

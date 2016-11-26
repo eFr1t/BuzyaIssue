@@ -1,0 +1,46 @@
+﻿@model EPAM.Model.AuthorFilter
+
+@{
+    ViewBag.Num = 0;
+}
+
+<form id="filterForm">
+    <input id="page" type="hidden" name="page" value="@ViewBag.CurrentPage" />
+    <input type="hidden" name="SearchString" value="@Model.SearchString" />
+    <input type="hidden" name="HourRateMax" value="@Model.HourRateMax" />
+    <input type="hidden" name="HourRateMin" value="@Model.HourRateMin" />
+    <input type="hidden" name="CountOfPastJobsMax" value="@Model.CountOfPastJobsMax" />
+    <input type="hidden" name="CountOfPastJobsMin" value="@Model.CountOfPastJobsMin" />
+    @for (int i = 0; i < Model.SkillIds.Count; i++)
+    {
+        <input type="hidden" name="SkillId[@i]" value="@Model.SkillIds[i]" />
+    }
+
+    @if (!ViewBag.HasAuthors)
+    {
+        <h2>No authors found</h2>
+    }
+    else
+    {
+        <div id="pages">
+            @foreach (var item in ViewBag.Pages)
+            {
+                <input type="button" value="@item" class="@(item == ViewBag.CurrentPage ? "pressed" : "")" />
+            }
+        </div>
+        <div>
+            @foreach (EPAM.Model.Author item in ViewBag.Authors)
+            {
+                @Html.Partial("_AuthorPost", item)
+                ViewBag.Num++;
+            }
+        </div>
+        <div id="pages">
+            @foreach (var item in ViewBag.Pages)
+            {
+                <input type="button" value="@item" class="@(item == ViewBag.CurrentPage ? "pressed" : "")" />
+            }
+        </div>
+    }
+</form>
+

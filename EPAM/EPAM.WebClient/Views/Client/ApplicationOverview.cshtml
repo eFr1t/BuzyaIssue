@@ -1,0 +1,71 @@
+﻿@model EPAM.Model.Application
+
+@{
+    ViewBag.Title = "ApplicationOverview";
+    ViewBag.Menu = 0;
+}
+
+@section Links{
+    @Styles.Render("~/Content/Client/ApplicationOverview.css")
+}
+
+@section FirstMenuBar{
+    @Html.Partial("FirstMenuBar")
+}
+
+@section SecondMenuBar{
+    @Html.Partial("JobsMenuBar")
+}
+
+<div id="workSpace">
+    <h1>Application Overview</h1>
+    <div id="info">        
+        @Html.ActionLink(Model.Author.Name + Model.Author.SName, "AuthorOverview", "Client", new { authorId = Model.Author.Id }, null)
+        @if (Model.Author.Title != null && Model.Author.Title != "")
+        {
+            <h2>Author title - @Model.Author.Title</h2>
+        }
+    </div>
+    <h1 id="questionsTitle">Questions:</h1>
+    <form method="post" action="@Url.Action("ApproveApplication")">
+        <input id="applicationId" type="hidden" name="applicationId" value="@Model.Id" />
+        <div id="questions">
+            @foreach (var item in @Model.Answers)
+            {
+                <h3>@item.Question.Text</h3>
+                <h4>@item.Text</h4>
+            }
+        </div>
+        <input type="submit" value="Approve" />
+        <input id="decline"type="button" value="Decline" />
+    </form>
+</div>
+
+<script>
+    $(function () {
+        $('form').validate({
+            submitHandler: function (form) {
+                $.ajax({
+                    url: $(form).attr("action"),
+                    data: $(form).serializeArray(),
+                    type: 'POST',
+                    success: function (data) {
+                        location = "/Client/MyJobs";
+                    }
+                });
+            }
+        });
+
+        $('#decline').click(function () {
+            $.ajax({
+                url: '@Url.Action("DeclineApplication")',
+                data: { applicationId: $('#applicationId').val() },
+                type: 'POST',
+                success: function (data) {
+                    location = "/Client/JobOverview?jobId=@Model.JobId";
+                }
+            });
+        });
+    });
+</script>
+
